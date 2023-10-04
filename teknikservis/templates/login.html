@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% load static %}
+    {% block content %}
+
+    	{% if user.is_authenticated %}
+   
+		 	<script>window.location.href = "http://127.0.0.1:8000/";</script>
+
+		{% else %}
+
+        <div class="row mt-5 pt-5">
+          
+        	<div class="col-md-3"></div>
+
+            <div class="col-md-2">
+            	<img src="{% static 'image/login_admin.png' %}" id="login_admin_image" alt="Admin">
+            </div>
+            <div class="col-md-4">
+                <h2>Teknik Servis</h2>
+                <form method="POST" action="/login/">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Kullanıcı Adı</label>
+                    <input type="text" required name="username"  class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Parola</label>
+                    {% if messages %}
+			          {% for message in messages %}
+			          <div class="alert alert-{{ message.tags }}" style="width: 300px; position: fixed; right:60px; top:60px;" role="alert">
+			            <ul class="messages">
+			                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			                {% endfor %}
+			            </ul>
+			          </div>
+			          {% endif %}
+                    <input type="password" required name="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Giriş</button>
+                </form>
+            </div>
+
+        	<div class="col-md-5"></div>
+
+
+        </div>
+		{% endif %}
+
+
+      {% endblock %}

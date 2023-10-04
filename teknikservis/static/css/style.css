@@ -1,0 +1,12 @@
+body {
+	background: #6610f2;
+}
+
+#login_admin_image {
+	border-radius: 20px !important;
+	margin-top:50px;
+}
+#kayit_yazi {
+	color:white;
+	cursor: pointer;
+}
